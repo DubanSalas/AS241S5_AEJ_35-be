@@ -1,0 +1,38 @@
+server:
+  port: ${PORT:8080}
+  url: ${SERVER_URL:http://localhost:8080}
+
+spring:
+  application:
+    name: ms-spotify-youtube-api
+  r2dbc:
+    url: r2dbc:postgresql://ep-withered-shape-anlsd669-pooler.c-6.us-east-1.aws.neon.tech/duban_salas_35?sslmode=require
+    username: neondb_owner
+    password: npg_mWdQ7hoGT3UF
+    pool:
+      max-idle-time: 10m
+      validation-query: SELECT 1
+      initial-size: 1
+      max-size: 5
+
+rapidapi:
+  apikey: ${RAPIDAPI_APIKEY:8c194bd205msh310b83fa35b79ecp15bc52jsnbe6818cb1e6f}
+  youtube:
+    url: ${RAPIDAPI_YT_URL:https://yt-api.p.rapidapi.com}
+    host: ${RAPIDAPI_YT_HOST:yt-api.p.rapidapi.com}
+  spotify:
+    url: ${RAPIDAPI_SPOTIFY_URL:https://spotify-web-api3.p.rapidapi.com}
+    host: ${RAPIDAPI_SPOTIFY_HOST:spotify-web-api3.p.rapidapi.com}
+
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG
+    org.springframework.web.reactive.function.client: DEBUG
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
