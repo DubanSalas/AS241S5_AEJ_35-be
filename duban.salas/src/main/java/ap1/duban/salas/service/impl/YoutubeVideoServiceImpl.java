@@ -49,6 +49,7 @@ public class YoutubeVideoServiceImpl implements YoutubeVideoService {
                         .build())
                 .retrieve()
                 .bodyToMono(JsonNode.class)
+                .doOnNext(json -> log.info("YouTube response: {}", json))
                 .flatMapMany(json -> Flux.fromIterable(json.path("data")))
                 .map(item -> {
                     YoutubeVideo video = new YoutubeVideo();
@@ -56,8 +57,10 @@ public class YoutubeVideoServiceImpl implements YoutubeVideoService {
                     video.setVideoId(item.path("videoId").asText());
                     video.setTitle(item.path("title").asText());
                     video.setChannel(item.path("channelTitle").asText());
-                    video.setThumbnailUrl(item.path("thumbnail").path("thumbnails").path(0).path("url").asText());
-                    video.setCreationDate(LocalDateTime.now());
+                    // Intentar diferentes paths para el thumbnail
+                    String thumb = item.path("thumbnail").path(0).path("url").asText();
+                    if (thumb.isEmpty()) thumb = item.path("thumbnail").path("thumbnails").path(0).path("url").asText();
+                    video.setThumbnailUrl(thumb);                    video.setCreationDate(LocalDateTime.now());
                     video.setUpdateDate(LocalDateTime.now());
                     return video;
                 })

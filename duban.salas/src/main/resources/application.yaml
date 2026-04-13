@@ -9,11 +9,6 @@ spring:
     url: r2dbc:postgresql://ep-withered-shape-anlsd669-pooler.c-6.us-east-1.aws.neon.tech/duban_salas_35?sslmode=require
     username: neondb_owner
     password: npg_mWdQ7hoGT3UF
-    pool:
-      max-idle-time: 10m
-      validation-query: SELECT 1
-      initial-size: 1
-      max-size: 5
 
 rapidapi:
   apikey: ${RAPIDAPI_APIKEY:8c194bd205msh310b83fa35b79ecp15bc52jsnbe6818cb1e6f}

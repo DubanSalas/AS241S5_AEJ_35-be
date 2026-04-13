@@ -49,13 +49,21 @@ public class SpotifyTrackServiceImpl implements SpotifyTrackService {
                         .build())
                 .retrieve()
                 .bodyToMono(JsonNode.class)
+                .doOnNext(json -> log.info("Spotify response: {}", json))
                 .map(json -> {
-                    JsonNode track = json.path("message").path("body").path("track_list").path(0).path("track");
                     SpotifyTrack result = new SpotifyTrack();
                     result.setArtist(artist);
-                    result.setTitle(track.path("track_name").asText(title));
-                    result.setAlbum(track.path("album_name").asText("unknown"));
-                    result.setLyrics(track.path("track_share_url").asText(""));
+                    result.setTitle(title);
+                    // Los lyrics vienen como array en data[]
+                    JsonNode dataNode = json.path("data");
+                    if (dataNode.isArray()) {
+                        StringBuilder sb = new StringBuilder();
+                        dataNode.forEach(line -> sb.append(line.asText()).append("\n"));
+                        result.setLyrics(sb.toString().trim());
+                    } else {
+                        result.setLyrics("");
+                    }
+                    result.setAlbum("Spotify");
                     result.setCreationDate(LocalDateTime.now());
                     result.setUpdateDate(LocalDateTime.now());
                     return result;
@@ -78,11 +86,15 @@ public class SpotifyTrackServiceImpl implements SpotifyTrackService {
                             .retrieve()
                             .bodyToMono(JsonNode.class)
                             .map(json -> {
-                                JsonNode track = json.path("message").path("body").path("track_list").path(0).path("track");
                                 existing.setArtist(artist);
-                                existing.setTitle(track.path("track_name").asText(title));
-                                existing.setAlbum(track.path("album_name").asText("unknown"));
-                                existing.setLyrics(track.path("track_share_url").asText(""));
+                                existing.setTitle(title);
+                                JsonNode dataNode = json.path("data");
+                                if (dataNode.isArray()) {
+                                    StringBuilder sb = new StringBuilder();
+                                    dataNode.forEach(line -> sb.append(line.asText()).append("\n"));
+                                    existing.setLyrics(sb.toString().trim());
+                                }
+                                existing.setAlbum("Spotify");
                                 existing.setUpdateDate(LocalDateTime.now());
                                 return existing;
                             })
