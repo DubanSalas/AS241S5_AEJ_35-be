@@ -1,0 +1,6 @@
+# kubectl create namespace duban-salas-35-namespace (COMANDO)
+# kubectl apply -f duban-salas-35-namespace.yml (yml)
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: duban-salas-35-namespace

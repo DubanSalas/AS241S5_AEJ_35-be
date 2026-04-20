@@ -11,14 +11,14 @@ spring:
     password: npg_mWdQ7hoGT3UF
 
 rapidapi:
-  apikey: ${RAPIDAPI_APIKEY:8c194bd205msh310b83fa35b79ecp15bc52jsnbe6818cb1e6f}
   youtube:
     url: ${RAPIDAPI_YT_URL:https://yt-api.p.rapidapi.com}
     host: ${RAPIDAPI_YT_HOST:yt-api.p.rapidapi.com}
+    apikey: ${RAPIDAPI_APIKEY:8c194bd205msh310b83fa35b79ecp15bc52jsnbe6818cb1e6f}
   spotify:
     url: ${RAPIDAPI_SPOTIFY_URL:https://spotify-web-api3.p.rapidapi.com}
     host: ${RAPIDAPI_SPOTIFY_HOST:spotify-web-api3.p.rapidapi.com}
-
+    apikey: ${RAPIDAPI_APIKEY:8c194bd205msh310b83fa35b79ecp15bc52jsnbe6818cb1e6f}
 logging:
   level:
     org.springframework.r2dbc: DEBUG
