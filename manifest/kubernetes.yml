@@ -37,7 +37,7 @@ kubectl get all,secrets -n duban-salas-35-namespace
 
 
 # listar services del namespace "duban-salas-35-namespace"
-minikube service duban-salas-35-service -n juan-condori-00-namespace
+minikube service duban-salas-35-service -n duban-salas-35-namespace
 minikube service list
 
 # probar el microservicio dentro del clúster con curl
