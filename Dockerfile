@@ -17,3 +17,12 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 # docker run -d --name spotify-be -p 8085:8085 juan321/spotify-be:1.0
 
 # docker push juan321/spotify-be:1.0
+
+# 2. Build de tu imagen
+# docker build -t salasnapandubanalexander/duban-salas-35-be:1.0 .
+
+# 3. Login a Docker Hub
+# docker login
+
+# 4. Push
+# docker push salasnapandubanalexander/duban-salas-35-be:1.0
