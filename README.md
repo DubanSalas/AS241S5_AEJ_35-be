@@ -1,5 +1,7 @@
 # YouTube & Spotify APIs con Spring Boot
 
+> Pipeline CI/CD: GitHub Actions + Render — Deploy automático activo ✅
+
 APIs de RapidAPI para búsqueda de videos en YouTube y canciones en Spotify.
 La API de YouTube permite buscar videos por palabras clave y obtener información como título, canal e ID del video.
 La API de Spotify (Musixmatch) permite buscar canciones por artista y título, obteniendo información del track y álbum.
