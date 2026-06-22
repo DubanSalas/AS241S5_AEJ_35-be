@@ -5,7 +5,7 @@ metadata:
   name: duban-salas-35-deployment
   namespace: duban-salas-35-namespace
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: duban-salas-35-deployment        # Debe coincidir con las etiquetas del Service
